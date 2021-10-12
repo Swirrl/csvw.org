@@ -35,107 +35,110 @@
       </div>
     </header>
     <main>
-      <section class="center mw8 cf">
-        <div class="w-100 pa2 fl">
-          <h3>
-            Use CSVW to annotate CSV files with JSON metadata
-          </h3>  
-          <p>Here the metadata provides column names and datatypes. It also declares that the geo-coordinates use the Ordnance Survey National Grid.</p>
-        </div>
-        <div class="w-25 pa2 fl code">
-          <h4 class="code">grit_bins.csv</h4>
-          <table class="tr">
-            <tr>
-              <td>42,</td>
-              <td>425584,</td>
-              <td>439562</td>
-            </tr>
-            <tr>
-              <td>43,</td>
-              <td>425301,</td>
-              <td>439519</td>
-            </tr>
-            <tr>
-              <td>44,</td>
-              <td>425379,</td>
-              <td>439596</td>
-            </tr>
-            <tr>
-              <td>45,</td>
-              <td>425024,</td>
-              <td>439663</td>
-            </tr>
-            <tr>
-              <td>46,</td>
-              <td>424915,</td>
-              <td>439697</td>
-            </tr>
-            <tr>
-              <td>48,</td>
-              <td>425157,</td>
-              <td>440347</td>
-            </tr>
-            <tr>
-              <td>49,</td>
-              <td>424784,</td>
-              <td>439681</td>
-            </tr>
-            <tr>
-              <td>50,</td>
-              <td>424708,</td>
-              <td>439759</td>
-            </tr>
-            <tr>
-              <td>51,</td>
-              <td>424913,</td>
-              <td>440642</td>
-            </tr>
-            <tr>
-              <td>52,</td>
-              <td>425342,</td>
-              <td>440376</td>
-            </tr>
-            <tr>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-            </tr>          </table>
-        </div>
-        <div class="w-75 pa2 fl code">
-          <h4 class="code">grit_bins.json</h4>
-          <pre><code>{
+      <section class="bg-light-gray">
+        <div class="center mw8 cf">
+          <div class="w-100 fl">
+            <h3 class="f3">
+              Use CSVW to annotate CSV files with JSON metadata
+            </h3>  
+            <p>Here the metadata provides column names and datatypes. It also declares that the geo-coordinates use the Ordnance Survey National Grid.</p>
+          </div>
+          <div class="w-100 w-20-ns fl code">
+            <h4 class="code f4">grit_bins.csv</h4>
+            <table class="tr bg-white br2">
+              <tr>
+                <td>42,</td>
+                <td>425584,</td>
+                <td>439562</td>
+              </tr>
+              <tr>
+                <td>43,</td>
+                <td>425301,</td>
+                <td>439519</td>
+              </tr>
+              <tr>
+                <td>44,</td>
+                <td>425379,</td>
+                <td>439596</td>
+              </tr>
+              <tr>
+                <td>45,</td>
+                <td>425024,</td>
+                <td>439663</td>
+              </tr>
+              <tr>
+                <td>46,</td>
+                <td>424915,</td>
+                <td>439697</td>
+              </tr>
+              <tr>
+                <td>48,</td>
+                <td>425157,</td>
+                <td>440347</td>
+              </tr>
+              <tr>
+                <td>49,</td>
+                <td>424784,</td>
+                <td>439681</td>
+              </tr>
+              <tr>
+                <td>50,</td>
+                <td>424708,</td>
+                <td>439759</td>
+              </tr>
+              <tr>
+                <td>51,</td>
+                <td>424913,</td>
+                <td>440642</td>
+              </tr>
+              <tr>
+                <td>52,</td>
+                <td>425342,</td>
+                <td>440376</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>          
+            </table>
+          </div>
+          <div class="w-100 w-80-ns fl code">
+            <h4 class="code f4">grit_bins.json</h4>
+            <pre class="bg-white br2 tracked-tight" style="overflow: scroll"><code>{
   "@context": ["http://www.w3.org/ns/csvw", {"@language": "en"}],
   "tables": [{
     "url": "http://opendata.leeds.gov.uk/downloads/gritting/grit_bins.csv",
     "tableSchema": {
       "columns": [
-        {
-          "name": "location",
-          "datatype": "integer"
-        },
-        {
-          "name": "easting",
-          "datatype": "decimal",
-          "propertyUrl": "http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting"
-        },
-        {
-          "name": "northing",
-          "datatype": "decimal",
-          "propertyUrl": "http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing"
-        }
+      {
+        "name": "location",
+        "datatype": "integer"
+      },
+      {
+        "name": "easting",
+        "datatype": "decimal",
+        "propertyUrl": "http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting"
+      },
+      {
+        "name": "northing",
+        "datatype": "decimal",
+        "propertyUrl": "http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing"
+      }
       ],
       "aboutUrl": "#{location}"
     }
   }]
-}            
+}
           </code></pre>
         </div>
-      </section>
-      <section class="bg-light-gray pa5">
-        <div class="center mw6">
-          <h2 class="f3">
-            The UK Government Digital Service recommends CSVW:
-          </h2>
+      </div>
+    </section>
+    <section class="bg-light-gray pa5">
+      <div class="center mw6">
+        <h2 class="f3">
+          The UK Government Digital Service recommends CSVW:
+        </h2>
           <blockquote class="mt0 ml0">
             <p class="lh-copy measure mt0 ml0 pl3 bl bw1">Use the CSV on the Web (CSVW) standard to add metadata to describe the contents and structure of comma-separated values (CSV) data files.</p>
             <cite><a href="https://www.gov.uk/government/publications/recommended-open-standards-for-government/using-metadata-to-describe-csv-data">
