@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>CSV on the Web (CSVW)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <body>
+    <header>
+      <div id="background"></div>
+      <div class="pb3 pb4-m pb5-l">
+        <nav class="dt w-100 mw8 center"> 
+          <div class="dtc v-mid pa3">
+            <a href="/" class="dib h3 pa1 no-underline">
+              <svg class="v-mid link white-90 hover-white" style="fill:currentcolor" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 220 220"><defs><path id="comma" d="m 0,11.136 c 0,6.144 4.992,11.136 11.328,11.136 0,5.952 -9.408,16.32 -11.328,16.704 6.144,0 22.656,-11.904 22.656,-27.84 0,-6.144 -4.992,-11.136 -11.328,-11.136 -6.336,0 -11.328,4.992 -11.328,11.136 z"></path></defs><use xlink:href="#comma" transform="scale(3,3) translate(69.54423259036625, 45.20944533000791) rotate(80)"></use><use xlink:href="#comma" transform="scale(3,3) translate(20.71637170940382, 62.981333293569335) rotate(200)"></use><use xlink:href="#comma" transform="scale(3,3) translate(29.73939570022992, 11.809221376422755) rotate(320)"></use></svg>
+              <span class="v-mid f2 white-90 hover-white">csvw.org</span>
+            </a>
+          </div>
+          <div class="dtc v-mid tr pa3">
+            <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="/guides.html" >Guides</a>
+            <a class="f4 fw4 hover-white no-underline white-70 dn dib-l pv2 ph3" href="/tools.html" >Tools</a>
+            <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="/standards.html" >Standards</a>
+          </div>
+        </nav>
+        <div class="center mw7">
+          <div class="tc-l mt3 mt4-m mt5-l ph3">
+            <h1 class="f-headline lh-solid white-90">CSV on the Web</h1>
+            <p class="f2 fw2 white-90 mb0 lh-title">CSVW is a standard for describing and clarifying the content of CSV tables</p>
+            <p class="f4 fw1 f4 white-80 mt3 mb4 lh-copy">This site explains CSVW and suggests some tools you can use for working with it.</p>
+            <!--
+              <a class="f4 no-underline dib v-mid bg-blue white ba b--blue ph3 pv2 mb3 br-pill" href="/">Why CSV on the Web?</a>
+              <a class="f4 no-underline dib v-mid white ba b--white ph3 pv2 mb3 br-pill" href="">Get started</a>
+            -->
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="center mw8 cf">
+        <div class="w-100 pa2 fl">
+          <h3>
+            Use CSVW to annotate CSV files with JSON metadata
+          </h3>  
+          <p>Here the metadata provides column names and datatypes. It also declares that the geo-coordinates use the Ordnance Survey National Grid.</p>
+        </div>
+        <div class="w-25 pa2 fl code">
+          <h4 class="code">grit_bins.csv</h4>
+          <table class="tr">
+            <tr>
+              <td>42,</td>
+              <td>425584,</td>
+              <td>439562</td>
+            </tr>
+            <tr>
+              <td>43,</td>
+              <td>425301,</td>
+              <td>439519</td>
+            </tr>
+            <tr>
+              <td>44,</td>
+              <td>425379,</td>
+              <td>439596</td>
+            </tr>
+            <tr>
+              <td>45,</td>
+              <td>425024,</td>
+              <td>439663</td>
+            </tr>
+            <tr>
+              <td>46,</td>
+              <td>424915,</td>
+              <td>439697</td>
+            </tr>
+            <tr>
+              <td>48,</td>
+              <td>425157,</td>
+              <td>440347</td>
+            </tr>
+            <tr>
+              <td>49,</td>
+              <td>424784,</td>
+              <td>439681</td>
+            </tr>
+            <tr>
+              <td>50,</td>
+              <td>424708,</td>
+              <td>439759</td>
+            </tr>
+            <tr>
+              <td>51,</td>
+              <td>424913,</td>
+              <td>440642</td>
+            </tr>
+            <tr>
+              <td>52,</td>
+              <td>425342,</td>
+              <td>440376</td>
+            </tr>
+            <tr>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr>          </table>
+        </div>
+        <div class="w-75 pa2 fl code">
+          <h4 class="code">grit_bins.json</h4>
+          <pre><code>{
+  "@context": ["http://www.w3.org/ns/csvw", {"@language": "en"}],
+  "tables": [{
+    "url": "http://opendata.leeds.gov.uk/downloads/gritting/grit_bins.csv",
+    "tableSchema": {
+      "columns": [
+        {
+          "name": "location",
+          "datatype": "integer"
+        },
+        {
+          "name": "easting",
+          "datatype": "decimal",
+          "propertyUrl": "http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting"
+        },
+        {
+          "name": "northing",
+          "datatype": "decimal",
+          "propertyUrl": "http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing"
+        }
+      ],
+      "aboutUrl": "#{location}"
+    }
+  }]
+}            
+          </code></pre>
+        </div>
+      </section>
+      <section class="bg-light-gray pa5">
+        <div class="center mw6">
+          <h2 class="f3">
+            The UK Government Digital Service recommends CSVW:
+          </h2>
+          <blockquote class="mt0 ml0">
+            <p class="lh-copy measure mt0 ml0 pl3 bl bw1">Use the CSV on the Web (CSVW) standard to add metadata to describe the contents and structure of comma-separated values (CSV) data files.</p>
+            <cite><a href="https://www.gov.uk/government/publications/recommended-open-standards-for-government/using-metadata-to-describe-csv-data">
+              GDS Recommended Open Standards for Government
+              </a></cite>
+          </blockquote>
+          <a class="f5 no-underline dib v-mid black ba b--black ph3 pv2 mb3 br-pill" href="">Learn how to publish CSVW</a>
+        </div>
+      </section>
+      <section class="center mw8 pv5">
+        <article>
+          <h1>Standardise dialects</h1>
+          <p>CSVW adopts the <a href="http://dataprotocols.org/csv-dialect/">CSV Dialect</a> standard to tell CSV parsers whether the table is delimited with commas or tabs, or whether to expect double quotes etc.</p>
+        </article>
+        <article>
+          <h1>Express types</h1>
+          <p>Table cells may be annotated with a datatype to indicate whether they contain numbers or dates etc.</p>
+        </article>
+        <article>
+          <h1>Disambiguate resources</h1>
+          <p>Identify the resources described a CSV file using URI templates</p>
+        </article>
+        <article>
+          <h1>Link data together</h1>
+          <p>URI templates provide a linked-data translation of the table</p>
+        </article>
+        <a class="f5 no-underline ba pv2 ph3 black v-mid br-pill b--black" href="">Learn how to use CSVW</a>
+      </section>
+    </main>
+    <footer class="bg-light-gray">
+      <div class="mw8 center pv5">
+        <span class="fr">Made by <a href="https://swirrl.com">Swirrl</a></span>
+      </div>
+    </footer>
+    <script type="module">
+      import { triangulation } from '/triangulation.js';
+      triangulation(document.getElementById("background"));
+    </script>
+  </body>
+</html>
