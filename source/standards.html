@@ -1,0 +1,61 @@
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">The Core CSVW Specification</h1>
+    <p class="measure-narrow lh-copy mid-gray">The CSVW specification is quite deep, building on multiple standards. It can be quite overwhelming to read from start to finish. This page provides an overview to help you find the parts most relevant to your interests.</p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns">The <a href="https://w3c.github.io/csvw/syntax/">CSVW syntax specification</a> describes a data model for tabular data. That is to say, it defines that a <em>table</em> is a collection of <em>cells</em> arranged into <em>columns</em> and <em>rows</em>. It also describes how to annotate a table with a metadata file to help processors parse and interpret the contents.</p>
+    <p>The schema for the metadata file is provided by the <a href="https://w3c.github.io/csvw/metadata/">CSVW metadata vocabulary</a>. The vocabulary defines the properties that can be used in an annotation. This includes things like a <em>schema</em> of <em>column descriptions</em>, <em>datatypes</em> and <em>foreign key relations</em>.</p>
+    <p>CSVW also defines how a table may be translated into <a href="https://www.w3.org/TR/rdf11-concepts/">RDF</a> via the <a href="https://w3c.github.io/csvw/csv2rdf/">csv2rdf procedure</a> or into <a href="">JSON</a> via the <a href="https://w3c.github.io/csvw/csv2json/">csv2json procedure</a>.</p>
+  </div>
+</section>
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">Building on a deep stack of standards</h1>
+    <p class="measure-narrow lh-copy mid-gray">The specification depends upon a range of other technical standards which may be of interest themselves.</p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns"><a href="http://dataprotocols.org/csv-dialect/">CSV Dialect</a> provides a standard for describing what “kind” of CSV file you have - i.e.&nbsp;the <em>terminator strings</em>, <em>quoting rules</em>, and <em>escape rules</em>etc. This allows you to use tab-separated instead of comma-separated values for example or to deal with the often invisible differences between applications and operating systems (like <em>encoding</em> or <em>line endings</em>). The CSVW syntax specification provides some sensible <a href="https://w3c.github.io/csvw/syntax/#syntax">Best Practice recommendations for standardising your CSV serialisation</a> (e.g.&nbsp;use UTF-8 encoding and CRLF line endings).</p>
+    <p><a href="https://www.w3.org/TR/json-ld/">JSON-LD</a> is a serialisation for linked-data in JSON which is used for the CSVW metadata file. This standard gives JSON documents an <code>"@context"</code> property which defines how to get from keys and values to URIs through processes called “expansion” and “compaction”. In CSVW the context is fixed for compatibility with non-JSON-LD-aware processors.</p>
+    <p><a href="https://www.w3.org/TR/xmlschema11-2/">XML Schema Datatypes</a> lists the various datatypes like <em>string</em>, <em>decimal</em>, and <em>datetime</em> etc. The <a href="https://w3c.github.io/csvw/syntax/#datatypes">Datatypes section of the CSVW syntax specification</a> builds upon this to allow annotated datatypes that might restrict the range of a number or format strings for parsing dates.</p>
+    <p><a href="https://www.w3.org/TR/curie/">Compact URIs</a> is a standard which describes how to make URIs shorter by using prefixes (i.e. if I tell you <code>dcterms</code> means “http://purl.org/dc/terms/” then I can write <code>dcterms:title</code> or <code>dcterms:publisher</code> without having to spell the whole URI out each time). Compact URIs are much easier for humans to read!</p>
+    <p><a href="https://datatracker.ietf.org/doc/html/rfc6570">URI Template</a>s can be used to create URIs by interpolate variables from table cells. A template like <code>http://example.net/thing/{id}</code> when combined with the cell value “123456”, for example, will expand to the URI <code>http://example.net/thing/123456</code>. This is particularly useful for <code>aboutUrl</code> or <code>valueUrl</code> properties.</p>
+    <p><a href="https://www.rfc-editor.org/rfc/rfc7111">CSV Fragment Identifiers</a> make it possible to refer to parts of a CSV file identified by row, column, or cell e.g.&nbsp;<code>http://example.net/data.csv#row=5-7</code>. These are used by the default metadata to give any CSV file a linked-data translation without requiring any configuration.</p>
+  </div>
+</section>
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">Vocabularies for interoperability</h1>
+    <p class="measure-narrow lh-copy mid-gray">CSVW suggests a set of ontologies you can adopt to integrate with other data on the web.</p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns">
+      The <a href="https://www.w3.org/ns/csvw">CSVW namespace</a> defines a set of RDF ontologies that may be used in annotation in their prefixed form (i.e.&nbsp;it provides a JSON-LD <code>"@context"</code>).
+      This means that instead of writing:
+      <blockquote>
+        <code>
+          {"http://purl.org/dc/terms/title": "My Great Table Group"}
+        </code>
+      </blockquote>
+      you’re able to write:
+      <blockquote>
+        <code>{"dcterms:title": "My Great Table Group"}</code>
+      </blockquote>
+        which is much more legible.
+    </p>
+    </p>These ontologies aren’t required in an notation but the fact that the authors chose to include them in the CSVW Namespace implies a sort of tacit recommendation. Indeed these ontologies are a great place to find useful properties for annotating your tables.</p>
+    <ul>
+    <li><a href="https://www.w3.org/TR/vocab-dcat-2/">Data Catalog Vocabulary (DCAT)</a> defines <em>Catalogs</em> and <em>Datasets</em> it also makes heavy use of Dublin Core Terms;</li>
+    <li><a href="https://dublincore.org/specifications/dublin-core/dcmi-terms/">Dublin Core Terms (DCTERMS)</a> defines fundamental datasets metadata terms like <em>title</em>, <em>modified</em> date, <em>publisher</em> and <em>license</em>;</li>
+    <li><a href="https://www.w3.org/TR/vocab-data-cube/">RDF Data Cube (QB)</a> provides a vocabulary for describing multi-dimensional statistical data building upon the <a href="https://sdmx.org/">SDMX</a> standard. This defines things like <em>observations</em>, <em>dimensions</em>, and <em>measures</em>.</li>
+    <li><a href="https://www.w3.org/TR/skos-primer/">Simple Knowledge Organisation System (SKOS)</a> can be used to express <em>concept schemes</em>
+  such as “thesauri, classification schemes, subject heading lists, 
+  taxonomies, folksonomies, and other similar types of controlled 
+  vocabulary”.</li>
+    <li><a href="http://www.heppnetz.de/ontologies/goodrelations/v1.html">Good Relations (gr)</a> is designed for e-commerce and defines things like <em>Business Entities</em>, <em>Products or Services</em> and <em>Price Specifications</em>.</li>
+    <li><a href="https://www.w3.org/TR/prov-primer/">PROV</a> let’s you explain the provenance of a dataset with reference to <em>Entities</em> and <em>Activities</em>.</li>
+    </ul>
+    <p>This is just a shortlist, consult the namespace document itself for the full details.</p>
+    <p>Indeed if you’re looking for URIs to use in your annotations then you might also like to try searching with the <a href="https://lov.linkeddata.es/">Linked Open Vocabularies</a> project or browsing around the <a href="http://prefix.cc/">prefix.cc namespace lookup</a> (just bear in mind that if the prefixes aren’t used in the CSVW namespace then you’ll need to spell out the URIs in full).</p>  
+  </div>
+</section>

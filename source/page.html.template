@@ -3,9 +3,9 @@ ${ head.html.template() }
         <h1 class="f-subheadline lh-solid white-90 pb2 mv0">$title$</h1>
       </div>
     </header>
-    <main class="mw8 center">
-      <article class="measure-wide lh-copy cf">
+    <main class="mw8 center pv5">
+      <article class="lh-copy cf">
         $body$
       </article>
     </main>
-${ tail.html.template() }      
+${ tail.html.template() }
