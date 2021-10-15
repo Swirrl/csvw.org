@@ -1,0 +1,13 @@
+
+<div class="fl w-100 w-50m w-25-ns pa2-ns">
+  <article class="br3 hidden ba b--black-10">
+    <h1 class="f4 bg-near-white br3 br--top black-60 mv0 pv2 ph3">$it.name$</h1>
+    <div class="pa3 bt b--black-10">
+      <p class="f6 f5-ns lh-copy measure">
+        $it.description$
+      </p>
+      <p><a href="$it.link$" class="f6">$it.link$</a></p>
+      <p class="i">$it.environment$</p>
+    </div>
+  </article>
+</div>
