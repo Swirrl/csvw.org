@@ -30,3 +30,8 @@ header {
   height: 100%;
   width: 100%;
 }
+
+footer {
+  background-color: #1D6F42;
+  color: white;
+}
