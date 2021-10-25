@@ -10,7 +10,7 @@
       </div>
     </footer>
     <script type="module">
-      import { triangulation } from '/triangulation.js';
+      import { triangulation } from './triangulation.js';
       triangulation(document.getElementById("background"));
     </script>
   </body>
