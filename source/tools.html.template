@@ -10,7 +10,7 @@ ${ head.html.template() }
         ${ endfor }  
       </section>
       <section class="mw8 center cf pa3">
-        <p>Please submit suggestions for other tools to our <a href="github.com/swirrl/csvw.org">GitHub repository</a>.</p>
+        <p>Please submit suggestions for other tools to our <a href="https://github.com/swirrl/csvw.org">GitHub repository</a>.</p>
       </section>
     </main>
 ${ tail.html.template() }
