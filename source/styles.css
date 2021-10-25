@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Patua+One&display=swap');
 
+:root {
+  --dark-colour: #175733;
+  --light-colour: #1D6F42;
+}
+
 body {
   font-family: 'Lato', sans-serif;
 }
@@ -23,7 +28,7 @@ header {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #175733;
+  background-color: var(--dark-colour);
 }
 
 #background > svg {
@@ -32,6 +37,31 @@ header {
 }
 
 footer {
-  background-color: #1D6F42;
+  background-color: var(--dark-colour);
   color: white;
+}
+
+/* 
+  Apply link styles to all anchor tags
+  http://tachyons.io/docs/elements/links/
+*/
+
+a {
+  color: var(--light-colour);
+  text-decoration: none;
+  transition: color .15s ease-in;
+}
+
+a:visited {
+  transition: color .15s ease-in;
+}
+a:hover   {
+  transition: color .15s ease-in;
+}
+a:active  {
+  transition: color .15s ease-in;
+}
+a:focus   {
+  transition: color .15s ease-in;
+  outline: 1px dotted currentColor;
 }

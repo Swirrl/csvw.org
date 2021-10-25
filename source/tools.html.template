@@ -1,15 +1,15 @@
 ${ head.html.template() }
-      <div class="mw8 center">
-        <h1 class="f-subheadline-ns f1 lh-solid white-90 pb2 mv0">$title$</h1>
+      <div class="mw8 center ph3 pb3">
+        <h1 class="f-subheadline-ns f1 lh-solid white-90 mv0">$title$</h1>
       </div>
     </header>
     <main>
-      <section class="mw8 center cf pa2">
+      <section class="mw8 center cf pa3 pv5">
         ${ for(tools) }
         ${ it:tool.html.template() }
         ${ endfor }  
       </section>
-      <section class="mw8 center cf pa2">
+      <section class="mw8 center cf pa3">
         <p>Please submit suggestions for other tools to our <a href="github.com/swirrl/csvw.org">GitHub repository</a>.</p>
       </section>
     </main>
