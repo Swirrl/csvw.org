@@ -8,7 +8,13 @@ jobs:
       options: "--entrypoint /bin/bash"
     steps:
       - uses: actions/checkout@v2
-      - run: ls -l
       - name: Build site
         run: source build.sh
-      
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
