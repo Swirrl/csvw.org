@@ -8,9 +8,7 @@ jobs:
       options: "--entrypoint /bin/bash"
     steps:
       - uses: actions/checkout@v2
-      - run: ls /github/home
-      - run: ls /github/workflow
-      - run: ls -a
+      - run: ls -l
       - name: Build site
-        run: ./build.sh
+        run: source build.sh
       
