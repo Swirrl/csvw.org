@@ -1,0 +1,253 @@
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">How to make CSVW</h1>
+    <p class="measure-narrow lh-copy mid-gray">
+      This guide walks shows how to turn a CSV file into CSVW
+    </p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns">
+      We've discussed <a href="/guides/why-use-csvw.html">why to use CSVW</a>,
+      but how can you do that?
+    </p>
+    <p>
+      Let's annotate a csv table with csvw metadata to accurately describe
+      it’s contents. The annotation will improve the machine-readability of
+      the dataset and connect it to a wider knowledge graph spread across
+      the web.
+    </p>
+    <p>We'll start with something simple.</p>
+  </div>
+</section>
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">Starting with CSV</h1>
+    <p class="measure-narrow lh-copy mid-gray">
+      Interpreting a CSV file often requires a bit of investigation
+    </p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns">
+      Data Mill North publishes a
+      <a href="https://datamillnorth.org/dataset/grit-bin-locations">list of Grit Bins</a>
+      on behalf of Leeds City Council.
+    </p>
+    <p>The first five lines of the csv looks like this:</p>
+    <script src="https://gist.github.com/Robsteranium/78f31656db318ccc6e23f5cd8ae15306.js"></script>
+
+    <p>On it’s own, this is of course a little tricky to interpret.</p>
+    <p>Fortunately the page we got the file from tells us that the columns are:</p>
+    <ul>
+      <li>location</li>
+      <li>easting</li>
+      <li>northing</li>
+    </ul>
+    <p>
+      We interpret <code>location</code> as an identifier for the spot where the bin
+      is placed - it serves to distinguish the location, not to locate it (i.e. on a
+      map). The second two columns locate these location with
+      <a href="https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid"
+        >Ordnance Survey National Grid</a
+      >
+      coordinates.
+    </p>
+  </div>
+</section>
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">Annotate the table</h1>
+    <p class="measure-narrow lh-copy mid-gray">
+      Metadata can help to make implicit knowledge explicit and machine-readable
+    </p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns">
+      We can use the csvw standard to make a machine-readable definition of how to
+      interpret the csv.
+    </p>
+    <p>
+      This is done with a json file. Here’s how we would give the columns names:
+    </p>
+    <script src="https://gist.github.com/Robsteranium/de53e18532652c6edbc488875492f457.js"></script>
+
+    <p>We can then add simple datatypes:</p>
+
+    <script src="https://gist.github.com/Robsteranium/00f233324e861e959417d67255eef80c.js"></script>
+
+    <p>We can also explain that the second and third are grid references.</p>
+    <p>
+      We could describe the datatype of these columns as being in metres, which are
+      the units for eastings and northings (and yes the data does seem rather more
+      precise than it needs to be). This wouldn’t be terribly helpful as we’re not
+      really talking about distance per se, but a 2-dimensional distance from the
+      National Grid’s origin point (<code>0, 0</code> is somewhere south-west of the
+      Isles of Scilly). Indeed it’s only possible to interpret those distances when
+      you know the origin and the projection used to get from the curved surface of
+      the globe to a flat 2D map.
+    </p>
+  </div>
+</section>
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">Incorporate knowledge from the web</h1>
+    <p class="measure-narrow lh-copy mid-gray">
+      Connect your data to a wider knowledge graph of standards and vocabularies
+    </p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns">
+      Fortunately, we don’t need to worry about transforming between coordinate
+      systems or projections. We can just say that we’re using the Ordnance Survey
+      system by using the identifiers that they provide for this purpose.
+    </p>
+    <p>
+      We can find those identifiers with the
+      <a href="https://lov.linkeddata.es/dataset/lov/">Linked Open Vocabularies</a>
+      search engine. When we search for “easting”, the
+      <a href="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/"
+        >Ordnance Survey’s Spatial Relations Ontology</a
+      >
+      is the top hit. If we browse to the ontology, we can see that it also declare
+      the “northing” property.
+    </p>
+    <p>We declare them by setting the “propertyUrl” for each column.</p>
+    <script src="https://gist.github.com/Robsteranium/0bdf584d8b82b1280cfe7a5eefb4e7a3.js"></script>
+    <p>
+      Now applications that know what to do with eastings and northings can
+      interpret the values correctly.
+    </p>
+  </div>
+</section>
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">Provide identifiers for others to use</h1>
+    <p class="measure-narrow lh-copy mid-gray">
+      Let others enrich your data by connecting to it
+    </p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns">
+      We also want to identify the entities in our data - the grit bins themselves.
+      This lets other uses refer to them unambigiously.
+    </p>
+    <p>
+      We can tell the data user that the first column serves as an identifier
+      to distinguish each row.
+    </p>
+    <p>
+      We can do that by saying that each row is about the location - or what csvw
+      calls “aboutUrl”. We don’t just want to set this on the location column, as it
+      applies to all 3 columns. Instead we set it for the whole table schema. We
+      also want to include the value from the location column in our URIs. To do this
+      we can use a <a href="https://tools.ietf.org/html/rfc6570">URI template</a>,
+      this standard lets us describe a URI in terms of some variables.
+    </p>
+    <script src="https://gist.github.com/Robsteranium/477f9a03a66f55c9ea5e7f24d2283af4.js"></script>
+    <p>
+      That is basically all the description we really need to provide for the
+      schema.
+    </p>
+  </div>
+</section>
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">Fit the pieces together</h1>
+    <p class="measure-narrow lh-copy mid-gray">
+      Associate the annotation file with the csv file
+    </p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns">
+      Finally, we can connect our annotation to the original csv file. We can do
+      this by including the URL of the table. There’s a few other options described
+      in the standard but typically you’ll want to publish the json alongside the
+      csv like this.
+    </p>
+    <p>
+      We also need to say that this json file is specified in terms of the csvw
+      standard, we set this using a “<span class="citation" data-cites="context"
+        >@context</span
+      >” key which follows the lead of the
+      <a href="https://json-ld.org/">json-ld</a> standard (a json serialisation for
+      linked-data).
+    </p>
+    <p>Our final metadata annotation for the table looks like this:</p>
+    <script src="https://gist.github.com/Robsteranium/e122f4f8e333966e168fd32547bea118.js"></script>
+  </div>
+</section>
+<section class="mb4 overflow-hidden">
+  <header class="fn fl-ns w-third-ns pr4-ns">
+    <h1 class="mb3 mt0 lh-title">Using CSVW</h1>
+    <p class="measure-narrow lh-copy mid-gray">
+      What can you do with a well annotated CSV file?
+    </p>
+  </header>
+  <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
+    <p class="mt0-ns">
+      You may be wondering how you can use this newly annotated table…
+    </p>
+    <p>
+      Ideally we’d be able to open this up in a mapping tool like
+      <a href="https://www.qgis.org">QGIS</a>, and have it automatically recognise
+      which columns to use as X and Y coordinates so we could create a map of grit
+      bins.
+    </p>
+    <p><img src="grit-bin-map.png" /></p>
+    <p>
+      Sadly we’re not quite at that point yet. This standard is still new and hasn’t
+      been adopted by applications like this yet.
+    </p>
+    <p>
+      What we do have is a good deal of <a href="/tools.html">libraries which
+      implement csvw in various programming languages</a>.
+    </p>
+    <p>
+      These can be used to validate the compatibility of csv and it’s json
+      annotations. This is useful either to check the annotations are correct, or to
+      validate that a given csv file conforms to a schema.
+    </p>
+    <p>
+      They can also translate the csv into either json or rdf formats (for example,
+      using <a href="https://github.com/Swirrl/csv2rdf">a csv2rdf tool</a>). This
+      is what a couple of lines of our csv look like as linked data:
+    </p>
+    <script src="https://gist.github.com/Robsteranium/100e2e348970be713861448a59eb08c9.js"></script>
+    <p>
+      The substantive content is the same, but the extra description earns us the
+      final two <a href="http://5stardata.info/">open data stars</a>, as promised in
+      the <a href="/guides/why-use-csvw.html">first guide explaining the rationale
+      for CSVW</a>:
+    </p>
+    <ul class="list">
+      <li>
+        ★★★★ using identifiers to denote things, so that people can talk about your
+        resources unambigiously
+      </li>
+      <li>★★★★★ linking your data to other data to provide context</li>
+    </ul>
+    <p>
+      We’ve given the bins URIs. Here location 696 get’s the URI
+      <code>http://opendata.leeds.gov.uk/downloads/gritting/grit_bins.csv#696</code>.
+      People can talk about this anywhere on the web and know exactly what
+      we’re talking about.
+    </p>
+    <p>
+      We’ve also adopted URIs from other vocabularies both the
+      <a href="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/"
+        >Ordnance Survey’s Spatial Relations Ontology</a
+      >
+      and the venerable
+      <a href="https://www.w3.org/TR/xmlschema11-2/">XSD Datatypes</a>, linking this
+      csv file into the web of data. Any tools that know how to deal with Ordnance
+      Survey points or decimal datatypes will know how to interpret this csv.
+    </p>
+    <p>
+      This example was nice and simple. It’s almost certain that the data you’re
+      working with is considerably more complex! It mightn’t be immediately obvious
+      how to apply this lesson to your data. Which vocabularies should you use? How
+      should you combine them? How should you structure the table? We’ll provide
+      answers to these questions in our next guide in this series, with further
+      examples of how to publish csvw.
+    </p>
+  </div>
+</section>
