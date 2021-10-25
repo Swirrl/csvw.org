@@ -3,9 +3,10 @@ on: push
 jobs:
   publish:
     runs-on: ubuntu-latest
+    container:
+      image: docker://pandoc/core:2.9
+      options: "--entrypoint /bin/bash"
     steps:
       - uses: actions/checkout@v2
       - name: Build site
-        uses: docker://pandoc/core:2.9
-        with:
-          entrypoint: "ls /github/workspace/"
+        run: build.sh
