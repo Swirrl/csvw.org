@@ -8,7 +8,8 @@ jobs:
       - name: Build site
         uses: docker://pandoc/core:2.9
         with:
-          entrypoint: sh build.sh
+          entrypoint: /bin/sh
+          args: build.sh
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
