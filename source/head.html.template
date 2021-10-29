@@ -8,6 +8,7 @@
   ${endif}
   <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="csvw-logo.svg" sizes="any" type="image/svg+xml">
   <body>
     <header>
       <div id="background"></div>
