@@ -1,7 +1,7 @@
 <section class="mb4 overflow-hidden">
   <header class="fn fl-ns w-third-ns pr4-ns">
     <h1 class="mb3 mt0 lh-title">Why use CSVW?</h1>
-    <p class="measure-narrow lh-copy mid-gray">Why not just use CSV?</p>
+    <p class="measure-narrow lh-copy mid-gray">What's wrong with CSV?</p>
   </header>
   <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
     <p class="mt0-ns">
@@ -23,7 +23,10 @@
       2005, there are still a wide range of interpretations to be found in the
       wild. These different dialects of csv take different approaches to quoting
       fields and escaping special characters. That’s not to mention
-      <a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/">differences in encoding that plague any text format</a>.
+      <a
+        href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/"
+        >differences in encoding that plague any text format</a
+      >.
     </p>
     <p>
       It’s also not possible to say in advance how the fields in CSV file ought
@@ -32,9 +35,24 @@
       letters in this column, only numbers, and no decimal points so it’s
       probably an integer variable”. There are clever tools for doing this
       guesswork for you, but whenever you're ingesting a csv file you will
-      likely need to devote a few lines to interpreting the data. Typically
-      this will be to parse dates or give the columns syntactically-valid
-      variable names.
+      likely need to devote a few lines to interpreting the data. Typically this
+      will be to parse dates or give the columns syntactically-valid variable
+      names.
+    </p>
+    <p>
+      CSVW solves this problem by adding a metadata annotation to a CSV file
+      that instructs parsers on how it should be interpreted. This specifies a
+      <em>dialect</em> and describes a <em>table schema</em>. The dialect
+      defines how the characters of text should be read. CSVW provides sensible
+      defaults, if you follow this convention you can effectively forget about
+      this problem! The table schema explains how to interpret the data values
+      in the CSV so that users don't need to waste any time preparing the data.
+      They get syntactically-valid variable names and cells cast into the
+      appropriate data types.
+    </p>
+    <p>
+      Patching-up the problems with CSV is really only the beginning of what's
+      possible with CSVW. It's real strength lies in putting CSV on the web...
     </p>
   </div>
 </section>
@@ -43,8 +61,8 @@
   <header class="fn fl-ns w-third-ns pr4-ns">
     <h1 class="mb3 mt0 lh-title">Putting CSV on the Web</h1>
     <p class="measure-narrow lh-copy mid-gray">
-      CSVW lets you connect your dataset to others on the web and them
-      connect with you
+      CSVW lets you connect your dataset to others on the web and them connect
+      with you
     </p>
   </header>
   <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
@@ -60,13 +78,13 @@
       <li>★★★ csv is non-proprietary</li>
     </ul>
     <p>
-      But what about the final 2 stars? On it’s own, CSV doesn’t really help you to
-      acheive those:
+      But what about the final 2 stars? On it’s own, CSV doesn’t really help you
+      to acheive those:
     </p>
     <ul class="list">
       <li>
-        ★★★★ using identifiers to denote things, so that people can talk about your
-        resources unambigiously
+        ★★★★ using identifiers to denote things, so that people can talk about
+        your resources unambigiously
       </li>
       <li>★★★★★ linking your data to other data to provide context</li>
     </ul>
@@ -78,35 +96,39 @@
     </p>
     <p><img src="guides/lod-cloud.png" /></p>
     <p>
-      Publishers wishing to contribute to this cloud, or leverage the informative
-      context it can provide for their own data, have to shift their perspective
-      from a tabular view of the world with it’s rows, columns and cells to one of
-      graphs, nodes and edges.
+      Publishers wishing to contribute to this cloud, or leverage the
+      informative context it can provide for their own data, have to shift their
+      perspective from a tabular view of the world with it’s rows, columns and
+      cells to one of graphs, nodes and edges.
     </p>
     <p>
-      They have also had to abandon CSV along the way and instead learn a new set of
-      technologies like RDF ontologies and SPARQL queries.
+      They have also had to abandon CSV along the way and instead learn a new
+      set of technologies like RDF ontologies and SPARQL queries.
     </p>
     <p>
       It’s against this backdrop that a W3C working group set out to provide
-      recommendations for working with CSV on the Web. This “CSVW” standard provides
-      a way to resolve the problems with CSV (standardising dialects and expressing
-      types) <em>and</em> to extend it with identifiers to make 5 star linked-data
-      in CSV format. In practical terms, this means associating your CSV file with a
-      JSON document that provides some addition metadata to describe and clarify the
-      content of the CSV table.
+      recommendations for working with CSV on the Web. This “CSVW” standard
+      provides a way to resolve the problems with CSV (standardising dialects
+      and expressing types) <em>and</em> to extend it with identifiers to make 5
+      star linked-data in CSV format. In practical terms, this means associating
+      your CSV file with a JSON document that provides some addition metadata to
+      describe and clarify the content of the CSV table.
     </p>
     <p>
-      The <a href="https://www.gov.uk/government/collections/metadata-standards-for-sharing-and-publishing-data">
-        UK Government has recently adopted the CSVW standard</a>
+      The
+      <a
+        href="https://www.gov.uk/government/collections/metadata-standards-for-sharing-and-publishing-data"
+      >
+        UK Government has recently adopted the CSVW standard</a
+      >
       and recommend that government organisations “Use the CSV on the Web (CSVW)
       standard to add metadata to describe the contents and structure of
       comma-separated values (CSV) data files”.
     </p>
     <p>
-      We’re delighted to see the power of linked-data being brought to the venerable
-      CSV format and hope that this will ensure it’s continued popularity for many
-      years to come.
+      We’re delighted to see the power of linked-data being brought to the
+      venerable CSV format and hope that this will ensure it’s continued
+      popularity for many years to come.
     </p>
     <p>
       Now that you know why you should use CSVW, you might like to learn
