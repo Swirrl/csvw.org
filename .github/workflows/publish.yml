@@ -11,7 +11,7 @@ jobs:
         uses: docker://pandoc/core:2.9
         with:
           entrypoint: /bin/sh
-          args: "build.sh /csvw.org/"
+          args: "build.sh https://csvw.org/"
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
@@ -19,4 +19,4 @@ jobs:
           target_branch: gh-pages
           build_dir: build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
