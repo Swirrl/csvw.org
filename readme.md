@@ -1,4 +1,4 @@
-# csvw.org
+# csvw.org <img src="source/csvw-logo.svg" align="right" height="139" />
 
 Static site generator for [csvw.org](http://csvw.org) using [pandoc](https://pandoc.org/).
 
