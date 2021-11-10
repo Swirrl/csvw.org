@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Patua+One&display=swap');
+
+:root {
+  --dark-colour: #175733;
+  --light-colour: #1D6F42;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+h1,h2,h3,h4,h5 {
+  font-family: 'Patua One', cursive, serif;
+}
+
+p,ul,ol {
+  line-height: 1.5; /* per lh-copy */
+}
+
+header {
+  position: relative
+}
+
+#background {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--dark-colour);
+}
+
+#background > svg {
+  height: 100%;
+  width: 100%;
+}
+
+footer {
+  background-color: var(--dark-colour);
+  color: white;
+}
+
+/* 
+  Apply link styles to all anchor tags
+  http://tachyons.io/docs/elements/links/
+*/
+
+a {
+  color: var(--light-colour);
+  text-decoration: none;
+  transition: color .15s ease-in;
+}
+
+a:visited {
+  transition: color .15s ease-in;
+}
+a:hover   {
+  transition: color .15s ease-in;
+}
+a:active  {
+  transition: color .15s ease-in;
+}
+a:focus   {
+  transition: color .15s ease-in;
+  outline: 1px dotted currentColor;
+}
