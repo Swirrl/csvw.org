@@ -12,7 +12,7 @@
     </p>
     <p>
       Let's annotate a csv table with csvw metadata to accurately describe
-      it’s contents. The annotation will improve the machine-readability of
+      it's contents. The annotation will improve the machine-readability of
       the dataset and connect it to a wider knowledge graph spread across
       the web.
     </p>
@@ -35,7 +35,7 @@
     <p>The first five lines of the csv looks like this:</p>
     <script src="https://gist.github.com/Robsteranium/78f31656db318ccc6e23f5cd8ae15306.js"></script>
 
-    <p>On it’s own, this is of course a little tricky to interpret.</p>
+    <p>On it's own, this is of course a little tricky to interpret.</p>
     <p>Fortunately the page we got the file from tells us that the columns are:</p>
     <ul>
       <li>location</li>
@@ -44,7 +44,7 @@
     </ul>
     <p>
       We interpret <code>location</code> as an identifier for the spot where the bin
-      is placed - it serves to distinguish the location, not to locate it (i.e. on a
+      is placed - it serves to distinguish the location, not to locate it (i.e. on a
       map). The second two columns locate these location with
       <a href="https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid"
         >Ordnance Survey National Grid</a
@@ -78,10 +78,10 @@
     <p>
       We could describe the datatype of these columns as being in metres, which are
       the units for eastings and northings (and yes the data does seem rather more
-      precise than it needs to be). This wouldn’t be terribly helpful as we’re not
+      precise than it needs to be). This wouldn't be terribly helpful as we're not
       really talking about distance per se, but a 2-dimensional distance from the
-      National Grid’s origin point (<code>0, 0</code> is somewhere south-west of the
-      Isles of Scilly). Indeed it’s only possible to interpret those distances when
+      National Grid's origin point (<code>0, 0</code> is somewhere south-west of the
+      Isles of Scilly). Indeed it's only possible to interpret those distances when
       you know the origin and the projection used to get from the curved surface of
       the globe to a flat 2D map.
     </p>
@@ -96,8 +96,8 @@
   </header>
   <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
     <p class="mt0-ns">
-      Fortunately, we don’t need to worry about transforming between coordinate
-      systems or projections. We can just say that we’re using the Ordnance Survey
+      Fortunately, we don't need to worry about transforming between coordinate
+      systems or projections. We can just say that we're using the Ordnance Survey
       system by using the identifiers that they provide for this purpose.
     </p>
     <p>
@@ -105,7 +105,7 @@
       <a href="https://lov.linkeddata.es/dataset/lov/">Linked Open Vocabularies</a>
       search engine. When we search for “easting”, the
       <a href="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/"
-        >Ordnance Survey’s Spatial Relations Ontology</a
+        >Ordnance Survey's Spatial Relations Ontology</a
       >
       is the top hit. If we browse to the ontology, we can see that it also declare
       the “northing” property.
@@ -136,7 +136,7 @@
     </p>
     <p>
       We can do that by saying that each row is about the location - or what csvw
-      calls “aboutUrl”. We don’t just want to set this on the location column, as it
+      calls “aboutUrl”. We don't just want to set this on the location column, as it
       applies to all 3 columns. Instead we set it for the whole table schema. We
       also want to include the value from the location column in our URIs. To do this
       we can use a <a href="https://tools.ietf.org/html/rfc6570">URI template</a>,
@@ -159,8 +159,8 @@
   <div class="fn fl-ns w-two-thirds-ns measure-wide lh-copy">
     <p class="mt0-ns">
       Finally, we can connect our annotation to the original csv file. We can do
-      this by including the URL of the table. There’s a few other options described
-      in the standard but typically you’ll want to publish the json alongside the
+      this by including the URL of the table. There's a few other options described
+      in the standard but typically you'll want to publish the json alongside the
       csv like this.
     </p>
     <p>
@@ -187,14 +187,14 @@
       You may be wondering how you can use this newly annotated table…
     </p>
     <p>
-      Ideally we’d be able to open this up in a mapping tool like
+      Ideally we'd be able to open this up in a mapping tool like
       <a href="https://www.qgis.org">QGIS</a>, and have it automatically recognise
       which columns to use as X and Y coordinates so we could create a map of grit
       bins.
     </p>
     <p><img src="guides/grit-bin-map.png" /></p>
     <p>
-      Sadly we’re not quite at that point yet. This standard is still new and hasn’t
+      Sadly we're not quite at that point yet. This standard is still new and hasn't
       been adopted by applications like this yet.
     </p>
     <p>
@@ -202,7 +202,7 @@
       implement csvw in various programming languages</a>.
     </p>
     <p>
-      These can be used to validate the compatibility of csv and it’s json
+      These can be used to validate the compatibility of csv and it's json
       annotations. This is useful either to check the annotations are correct, or to
       validate that a given csv file conforms to a schema.
     </p>
@@ -226,15 +226,15 @@
       <li>★★★★★ linking your data to other data to provide context</li>
     </ul>
     <p>
-      We’ve given the bins URIs. Here location 696 get’s the URI
+      We've given the bins URIs. Here location 696 get's the URI
       <code>http://opendata.leeds.gov.uk/downloads/gritting/grit_bins.csv#696</code>.
       People can talk about this anywhere on the web and know exactly what
-      we’re talking about.
+      we're talking about.
     </p>
     <p>
-      We’ve also adopted URIs from other vocabularies both the
+      We've also adopted URIs from other vocabularies both the
       <a href="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/"
-        >Ordnance Survey’s Spatial Relations Ontology</a
+        >Ordnance Survey's Spatial Relations Ontology</a
       >
       and the venerable
       <a href="https://www.w3.org/TR/xmlschema11-2/">XSD Datatypes</a>, linking this
@@ -242,10 +242,10 @@
       Survey points or decimal datatypes will know how to interpret this csv.
     </p>
     <p>
-      This example was nice and simple. It’s almost certain that the data you’re
-      working with is considerably more complex! It mightn’t be immediately obvious
+      This example was nice and simple. It's almost certain that the data you're
+      working with is considerably more complex! It mightn't be immediately obvious
       how to apply this lesson to your data. Which vocabularies should you use? How
-      should you combine them? How should you structure the table? We’ll provide
+      should you combine them? How should you structure the table? We'll provide
       answers to these questions in our next guide in this series, with further
       examples of how to publish csvw.
     </p>
