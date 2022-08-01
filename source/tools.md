@@ -26,4 +26,8 @@ tools:
 - name: CoW
   description: CSV to RDF converter. The project also provides a [web service](http://cattle.datalegend.net/) and [GUI](https://github.com/CLARIAH/ruminator).
   environment: Web, GUI, Python
+- name: cldf/csvw
+  link: https://github.com/cldf/csvw
+  description: A Python API to read and write relational, tabular data according to the CSVW specification.
+  environment: CLI, Python
 ---
