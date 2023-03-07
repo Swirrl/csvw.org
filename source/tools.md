@@ -30,4 +30,8 @@ tools:
   link: https://github.com/cldf/csvw
   description: A Python API to read and write relational, tabular data according to the CSVW specification.
   environment: CLI, Python
+- name: csvcubed
+  link: https://purl.org/csv-cubed/docs
+  description: A Python CLI to write RDF Cube Vocabulary cubes from tidy CSVs and a basic json mark-up.
+  environment: CLI, Python
 ---
