@@ -32,6 +32,6 @@ tools:
   environment: CLI, Python
 - name: csvcubed
   link: https://purl.org/csv-cubed/docs
-  description: A Python cli to write RDF Cube Vocabulary cubes from tidy CSVs and a basic json mark-up.
+  description: A Python CLI to write RDF Cube Vocabulary cubes from tidy CSVs and a basic json mark-up.
   environment: CLI, Python
 ---
