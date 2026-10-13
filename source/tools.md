@@ -9,7 +9,7 @@ tools:
   link: https://github.com/Data-Liberation-Front/csvlint.rb
   environment: CLI, Web, Ruby
   description: >
-    Check whether your CSV is well formed and to test it against a [CSV dialect](http://dataprotocols.org/csv-dialect/),
+    Check whether your CSV is well formed and to test it against a [CSV dialect](https://specs.frictionlessdata.io/csv-dialect/),
     [JSON table schema](https://specs.frictionlessdata.io/table-schema/) or of course a CSVW annotation. A web service is available at [csvlint.io](http://csvlint.io/).
 - name: csv2rdf
   link: https://github.com/Swirrl/csv2rdf/
